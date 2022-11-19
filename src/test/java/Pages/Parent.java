@@ -4,6 +4,8 @@ import Utilities.GWD;
 import junit.framework.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,10 +32,20 @@ public class Parent {
         JavascriptExecutor js = (JavascriptExecutor) GWD.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
+    public void scrollToMiddle(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) GWD.getDriver();
+
+        String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
+                + "var elementTop = arguments[0].getBoundingClientRect().top;"
+                + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
+
+        js.executeScript(scrollElementIntoMiddle, element);
+    }
+
 
     public void clickFunction(WebElement element)
     {
-        scrollToElement(element);
+        scrollToMiddle(element);
         waitUntilClickable(element);
         element.click();
     }
@@ -52,6 +64,18 @@ public class Parent {
         WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
         return elementList;
+    }
+    public void actionFunction(WebElement element){
+        Actions actions=new Actions(GWD.getDriver());
+        Action action=actions.moveToElement(element).click().build();
+        action.perform();
+
+    }
+    public void actionBuildPerform(WebElement element){
+        Actions actions=new Actions(GWD.getDriver());
+        Action action=actions.moveToElement(element).build();
+        action.perform();
+
     }
 
 }
