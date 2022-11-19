@@ -8,6 +8,7 @@ public class NavigateToSteps {
     DialogContent dc= new DialogContent();
     @Given("Navigate to AliExpress")
     public void navigateToAliExpress() {
+        GWD.getDriver().manage().deleteAllCookies();
         GWD.getDriver().get("https://tr.aliexpress.com/");
         GWD.getDriver().manage().window().maximize();
         dc.findAndClick("cookClose1");
