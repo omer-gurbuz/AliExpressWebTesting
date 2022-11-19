@@ -54,6 +54,26 @@ public class DialogContent extends Parent {
     @FindBy(xpath = "b//div[text()='Sepete henüz ürün eklenmedi']")
     private WebElement cartVerify;
 
+    @FindBy(xpath = "//a[text()='Ev']")
+    private WebElement EEHveG;
+
+    @FindBy(xpath = "//a[text()='Numaraya Göre Boyama']")
+    private WebElement numarayaGoreBoyama;
+
+    @FindBy(css = "span[class='next-breadcrumb-text activated'] span")
+    private WebElement verifyNumaraliResim;
+
+    @FindBy(xpath = "(//span[@class='next-checkbox']/input)[1]")
+    private WebElement cerceveEvet;
+
+    @FindBy(xpath = "(//span[@class='next-checkbox']/input)[3]")
+    private WebElement tekParca;
+
+    @FindBy(xpath = "(//div[@class='JIIxO']/a)[1]")
+    private WebElement ilkUrun;
+
+    @FindBy(xpath = "//button[text()='Sepete Ekle']")
+    private WebElement sepeteEkle;
 
     WebElement myElement;
     WebDriverWait wait=new WebDriverWait(GWD.getDriver(),Duration.ofSeconds(10));
@@ -95,7 +115,8 @@ public class DialogContent extends Parent {
             myElement=checkboxButton;break;
             case "deleteButton": GWD.Bekle(1);myElement=deleteButton;break;
             case "kaldirButton": GWD.Bekle(1);myElement=kaldirButton;break;
-
+            case "ilkUrun": myElement = ilkUrun;break;
+            case "sepeteEkle": myElement = sepeteEkle;break;
 
 
 
@@ -114,7 +135,7 @@ public class DialogContent extends Parent {
             case "verifyHomePage": myElement = verifyHomePage;break;
             case "koruyucuDonanimVerify": myElement = koruyucuDonanimVerify;break;
             case "cartVerify":GWD.Bekle(1); myElement = cartVerify;break;
-
+            case "verifyNumaraliResim": myElement = verifyNumaraliResim;break;
 
         }
 
@@ -133,5 +154,16 @@ public class DialogContent extends Parent {
             case "KaskVeKorumaTite": GWD.Bekle(1);myElement = KaskVeKorumaTite;break;
         }
         actionFunction(myElement);
+    }
+
+    public WebElement getMyElement(String strElement) {
+        switch (strElement){
+            case "EEHveG":myElement=EEHveG;break;
+            case "numarayaGoreBoyama":myElement=numarayaGoreBoyama;break;
+            case "cerceveEvet":myElement=cerceveEvet;break;
+            case "tekParca":myElement=tekParca;break;
+
+        }
+        return myElement;
     }
 }
