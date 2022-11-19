@@ -122,8 +122,8 @@ public class DialogContent extends Parent {
     }
     public void findAndActionMove(String strElement){
         switch (strElement){
-            case "menuButton":myElement=menuButton;break;
-            case "carAndMotoTite":if (!carAndMotoTite.isDisplayed()){menuButton.click();}myElement=carAndMotoTite;break;
+            case "menuButton":if (!carAndMotoTite.isDisplayed()){myElement=menuButton;}break;
+            case "carAndMotoTite":myElement=carAndMotoTite;break;
             case "KaskVeKorumaTite":GWD.Bekle(2);myElement=KaskVeKorumaTite;break;
         }
         actionBuildPerform(myElement);
